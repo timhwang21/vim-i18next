@@ -10,9 +10,6 @@ if !exists("g:i18next_shortcut")
   let g:i18next_shortcut = 'gT'
 endif
 
-try
+if has_key(plugs, 'vim-toop')
   call toop#mapFunction('i18next#goto', g:i18next_shortcut)
-catch
-  echo "vim-i18next failed to register shortcut"
-  finish
-endtry
+endif

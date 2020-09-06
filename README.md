@@ -4,11 +4,7 @@
 
 This plugin allows for navigating to the internationalized value of a translation key.
 
-Pressing `gTi'` when the cursor is over `t('path.to.translation')` will open the specified locale file and jump to the definition.
-
-This plugin depends on the following plugins to function correctly:
-
-- `jeanCarloMachado/vim-toop`
+vim-i18next optionally depends on [`vim-toop`](jeanCarloMachado/vim-toop) to allow operating on text objects. With `vim-toop` installed, pressing `gTi'` when the cursor is over `t('path.to.translation')` will open the specified locale file and jump to the definition.
 
 While this was written when [i18next](https://www.i18next.com/) in mind, it will allow you to jump to arbitrary dot-delimited paths in a specified JSON file.
 
@@ -18,8 +14,8 @@ While this was written when [i18next](https://www.i18next.com/) in mind, it will
 " Install plugin (in this example using vim-plug)
 Plug 'timhwang21/vim-i18next'
 
-" Install dependencies as well
-Plug 'jeanCarloMachado/vimPlugtoop'
+" Install optional dependencies
+Plug 'jeanCarloMachado/vim-toop'
 
 " Set path to 'main' locale file
 let g:i18next_locale_path = '/path/to/file.json'

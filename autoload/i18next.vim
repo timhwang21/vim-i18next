@@ -1,7 +1,5 @@
 " autoload/i18next.vim
 " Author: Tim Hwang <https://github.com/timhwang21>
-" Requires the the following extensions:
-"   jeanCarloMachado/vim-toop
 
 if exists('g:autoloaded_i18next')
   finish

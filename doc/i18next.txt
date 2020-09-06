@@ -15,7 +15,8 @@ translation key.
 Pressing `gTi'` when the cursor is over `t('path.to.translation')` will open
 the specified locale file and jump to the definition.
 
-This plugin depends on the following plugins to function correctly:
+This plugin optionally depends on the following plugins for enhanced
+functionality:
 
 - `jeanCarloMachado/vim-toop` 
 
