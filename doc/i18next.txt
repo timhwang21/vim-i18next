@@ -1,0 +1,72 @@
+*i18next.txt*  Plugin for navigating to JSON keys in locale files
+
+Author: Tim Hwang <https://github.com/timhwang21>
+License: MIT
+
+This plugin is only available if 'compatible' is not set.
+
+
+==============================================================================
+INTRODUCTION                                                        *i18next*
+
+This plugin allows for navigating to the internationalized value of a
+translation key.
+
+Pressing `gTi'` when the cursor is over `t('path.to.translation')` will open
+the specified locale file and jump to the definition.
+
+This plugin depends on the following plugins to function correctly:
+
+- `jeanCarloMachado/vim-toop` 
+- `mogelbrod/vim-jsonpath`
+
+==============================================================================
+CONFIGURATION                                         *i18next-configuration*
+
+|g:i18next_locale_path|                                *g:i18next_delimeter*
+Type: |string|
+
+Path to the locale JSON file. Required.
+
+Set using >
+    let g:i18next_locale_path = '/path/to/file.json'
+<
+For per-project files >
+    autocmd BufRead,BufNewFile /path/to/project/*
+    / let g:i18next_local_path = '/path_to_file.json'
+>
+
+|g:i18next_shortcut|                                    *g:i18next_register*
+Type: |string|
+Default: gT
+
+Shortcut to invoke `i18next#goto()` with a text object.
+
+Override using >
+    let g:i18next_shortcut = 'gt'
+<
+
+==============================================================================
+FUNCTIONS                                                 *i18next-functions*
+
+`i18next#goto()`                                              *i18next-goto*
+    Searches for the provided key in the file at `g:i18next_locale_path` and
+    navigates to the line if found.
+
+==============================================================================
+MAPPINGS                                                   *i18next-mappings*
+
+By default, `gT` is mapped to `i18next#goto`, and will pass a text object.
+This requires `jeanCarloMachado/vim-toop` to function correctly.
+
+This can be remapped by setting `g:i18next_shortcut`.
+
+==============================================================================
+ABOUT                                                         *i18next-about*
+
+Releases and bug reports are posted on GitHub:
+
+http://github.com/timhwang21/vim-i8next
+
+
+ vim:tw=78:sw=4:et:ft=help:norl:
