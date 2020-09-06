@@ -27,8 +27,10 @@ Plug 'mogelbrod/vimPlugjsonpath'
 let g:i18next_locale_path = '/path/to/file.json'
 
 " Alternatively, use autocmd for project-specific locale files
-autocmd BufRead,BufNewFile /path/to/project/*
-/ let g:i18next_local_path = '/path_to_file.json'
+autocmd BufRead,BufNewFile /path/to/project/client/*.tsx
+/ let g:i18next_local_path = '/app/assets/locales/translation.en-US.json'
+autocmd BufRead,BufNewFile /path/to/project/server/*.rb
+/ let g:i18next_local_path = '/config/locales/en-US.json'
 
 " Optionally rebind shortcut (defaults to gT)
 let g:i18next_shortcut = 'gt'
