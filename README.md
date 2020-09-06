@@ -4,9 +4,12 @@
 
 This plugin allows for navigating to the internationalized value of a translation key.
 
-vim-i18next has several dependencies. [`vim-jsonpath`](https://github.com/mogelbrod/vim-jsonpath) is required for JSON navigation. GNU `sed` installed as `gsed` (the default when running `brew install gsed`) is also currently required.
-
 While this was written when [i18next](https://www.i18next.com/) in mind, it will allow you to jump to arbitrary dot-delimited paths in a specified JSON file.
+
+## Requirements
+
+* [`mogelbrod/vim-jsonpath`](https://github.com/mogelbrod/vim-jsonpath)
+* GNU `sed` installed as `gsed` (the default when running `brew install gsed`)
 
 ## Quick Start
 
@@ -16,13 +19,14 @@ brew install gsed
 ```
 
 ```vim
-" Setup
 " Install plugin and dependencies (in this example using vim-plug)
 Plug 'timhwang21/vim-i18next'
 Plug 'mogelbrod/vim-jsonpath'
-" Set path to 'main' locale file
+
+" Set path to locale file
 let g:i18next_locale_path = '/path/to/file.json'
-" Alternatively, use autocmd for project-specific locale files
+" If you have different locale files for different areas of the codebase, you
+" can use autocmd to set the path based on the current file
 autocmd BufRead,BufNewFile /path/to/project/client/*.tsx
 / let g:i18next_local_path = '/app/assets/locales/translation.en-US.json'
 autocmd BufRead,BufNewFile /path/to/project/server/*.rb
@@ -44,12 +48,8 @@ nmap <leader>t :call i18next#echo_cursorline()<CR>
 " Example mappings using vim-toop
 " This allows operating on text objects for flexibility
 " gti' will run the function on the string within single quotes
-call toop#mapFunction('i18next#echo', <leader>t)
 call toop#mapFunction('i18next#goto', gt)
+call toop#mapFunction('i18next#echo', <leader>t)
 ```
 
 See `:help i18next` for more information.
-
-## Roadmap
-
-* YAML support with `yq`

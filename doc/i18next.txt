@@ -20,7 +20,7 @@ translation key.
 ==============================================================================
 CONFIGURATION                                         *i18next-configuration*
 
-|g:i18next_locale_path|                              *g:i18next_locale_path*
+|g:i18next_locale_path|                              *g:i18next-locale-path*
 Type: |string|
 
 Path to the locale JSON file. Required.
@@ -44,7 +44,7 @@ FUNCTIONS                                                 *i18next-functions*
     Prints the value for the key at the cursor in the file at
     `g:i18next_locale_path` and navigates to the line if found.
 
-`i18next#get_line_nr(search_for)`                      *i18next-get_line_nr*
+`i18next#get_line_nr(search_for)`                      *i18next-get-line-nr*
     Prints the value for the provided key in the file at
     `g:i18next_locale_path` and navigates to the line if found.
 
