@@ -18,9 +18,16 @@ let s:plugin_dir=expand('<sfile>:p:h:h')
 " of 0 is misleading as it is a valid line number.
 " Arguments: ([search_for])
 function! i18next#get_position(search_for) abort "{{{
+  let locale_file_already_open = buflisted(bufname(g:i18next_locale_path))
+
   execute "e" g:i18next_locale_path
   let pos = jsonpath#scan_buffer(a:search_for)
-  execute "e #"
+
+  if locale_file_already_open
+    execute "e #"
+  else
+    execute "bd"
+  endif
 
   if empty(pos)
     echo "Path not found: " . search_for
