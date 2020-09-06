@@ -4,11 +4,18 @@
 
 This plugin allows for navigating to the internationalized value of a translation key.
 
+vim-i18next currently depends on GNU `sed`. I'm developing this script on MacOS for personal use, so currently there is a hard dependency on GNU `sed` being installed as `gsed` (which is the default when running `brew install gsed`).
+
 vim-i18next optionally depends on [`vim-toop`](jeanCarloMachado/vim-toop) to allow operating on text objects. With `vim-toop` installed, pressing `gTi'` when the cursor is over `t('path.to.translation')` will open the specified locale file and jump to the definition.
 
 While this was written when [i18next](https://www.i18next.com/) in mind, it will allow you to jump to arbitrary dot-delimited paths in a specified JSON file.
 
 ## Quick Start
+
+```sh
+# Install GNU sed
+brew install gsed
+```
 
 ```vim
 " Install plugin (in this example using vim-plug)

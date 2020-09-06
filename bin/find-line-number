@@ -24,6 +24,8 @@ function main() {
   validate-arguments "$@"
 
   local filepath=${1}
+  # To handle kebab-cased strings, we need to insert doublequotes around every key.
+  # This is the easiest (if sloppy) way to do it in Bash.
   local jsonpath=$(gsed -e 's/\($\|^\)/"/g' -e 's/\(\.\)/"."/g' <<< $2)
   local output=$(jq -r .$jsonpath $filepath)
 
