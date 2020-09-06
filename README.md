@@ -1,6 +1,6 @@
 # vim-i18next
 
-[![asciinema](https://asciinema.org/a/J0Tp1pY3QjffC3X87DnqAAnBw.svg)](https://asciinema.org/a/J0Tp1pY3QjffC3X87DnqAAnBw)
+[![asciinema](https://asciinema.org/a/pQjrOxnFgzk5X0GOCIkyVyucQ.svg)](https://asciinema.org/a/pQjrOxnFgzk5X0GOCIkyVyucQ)
 
 This plugin allows for navigating to the internationalized value of a translation key.
 
@@ -53,4 +53,4 @@ See `:help i18next` for more information.
 
 ## Roadmap
 
-- [] YAML support with `yq`
+* YAML support with `yq`

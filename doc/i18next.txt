@@ -20,7 +20,7 @@ translation key.
 ==============================================================================
 CONFIGURATION                                         *i18next-configuration*
 
-|g:i18next_locale_path|                                *g:i18next_delimeter*
+|g:i18next_locale_path|                              *g:i18next_locale_path*
 Type: |string|
 
 Path to the locale JSON file. Required.
