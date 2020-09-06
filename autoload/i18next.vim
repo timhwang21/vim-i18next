@@ -7,7 +7,7 @@ endif
 let g:autoloaded_i18next = 1
 
 if !exists('g:i18next_locale_path')
-  echo "vim-i18next will not work without g:i18next_locale_path set to a translation file."
+  echom "vim-i18next: Plugin will not work without g:i18next_locale_path set to a translation file."
   finish
 endif
 
@@ -22,18 +22,23 @@ function! i18next#get_line_nr(search_for) abort "{{{
 
   " We don't use str2nr() because the error response is 0, which is a valid
   " line number. Use regex instead.
-  if !(line_nr =~# '^\d\+$')
-    echo "Path was not found in file."
+  if (line_nr =~# '^\d\+$')
+    return line_nr
+  else
     return -1
   endif
-
-  return line_nr
 endfunction "}}}
 
 " Print translation for provided key to messages.
 " Arguments: ([search_for])
 function! i18next#echo(search_for) abort "{{{
   let line_nr = i18next#get_line_nr(a:search_for)
+
+  if line_nr < 0
+    echom "vim-i18next: Path was not found in file."
+    return
+  endif
+
   let line = readfile(g:i18next_locale_path, '', line_nr)[line_nr - 1]
   echom line
 endfunction "}}}
@@ -43,6 +48,12 @@ endfunction "}}}
 " Arguments: ([search_for])
 function! i18next#goto(search_for) abort "{{{
   let line_nr = i18next#get_line_nr(a:search_for)
+
+  if line_nr < 0
+    echom "vim-i18next: Path was not found in file."
+    return
+  endif
+
   execute "e" g:i18next_locale_path
   execute line_nr
 endfunction "}}}
