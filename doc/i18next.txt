@@ -18,7 +18,6 @@ the specified locale file and jump to the definition.
 This plugin depends on the following plugins to function correctly:
 
 - `jeanCarloMachado/vim-toop` 
-- `mogelbrod/vim-jsonpath`
 
 ==============================================================================
 CONFIGURATION                                         *i18next-configuration*

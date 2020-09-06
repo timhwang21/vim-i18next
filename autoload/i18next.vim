@@ -1,7 +1,7 @@
 " autoload/i18next.vim
 " Author: Tim Hwang <https://github.com/timhwang21>
 " Requires the the following extensions:
-"   mogelbrod/vim-jsonpath
+"   jeanCarloMachado/vim-toop
 
 if exists('g:autoloaded_i18next')
   finish

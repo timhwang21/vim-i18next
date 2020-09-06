@@ -9,7 +9,6 @@ Pressing `gTi'` when the cursor is over `t('path.to.translation')` will open the
 This plugin depends on the following plugins to function correctly:
 
 - `jeanCarloMachado/vim-toop`
-- `mogelbrod/vim-jsonpath`
 
 While this was written when [i18next](https://www.i18next.com/) in mind, it will allow you to jump to arbitrary dot-delimited paths in a specified JSON file.
 
@@ -21,7 +20,6 @@ Plug 'timhwang21/vim-i18next'
 
 " Install dependencies as well
 Plug 'jeanCarloMachado/vimPlugtoop'
-Plug 'mogelbrod/vimPlugjsonpath'
 
 " Set path to 'main' locale file
 let g:i18next_locale_path = '/path/to/file.json'
