@@ -13,7 +13,10 @@ function validate-arguments() {
 }
 
 #######################################
-# Find line number for a JSON path
+# Find line number for a JSON path.
+# This is currently unused, as it does
+# not handle duplicates correctly.
+#
 # Arguments:
 #   JSON file
 #   Dot-delimited path
@@ -34,6 +37,7 @@ function main() {
     exit 1
   fi
 
+  # FIXME: This is broken, it fails on duplicates.
   echo $(awk "/$output/ {print FNR}" $filepath)
 }
 

@@ -4,7 +4,7 @@
 
 This plugin allows for navigating to the internationalized value of a translation key.
 
-vim-i18next has several dependencies. [`jq`](https://github.com/stedolan/jq) is required for JSON processing. GNU `sed` installed as `gsed` (the default when running `brew install gsed`) is also currently required.
+vim-i18next has several dependencies. [`vim-jsonpath`](https://github.com/mogelbrod/vim-jsonpath) is required for JSON navigation. GNU `sed` installed as `gsed` (the default when running `brew install gsed`) is also currently required.
 
 While this was written when [i18next](https://www.i18next.com/) in mind, it will allow you to jump to arbitrary dot-delimited paths in a specified JSON file.
 
@@ -13,14 +13,13 @@ While this was written when [i18next](https://www.i18next.com/) in mind, it will
 ```sh
 # Install GNU sed
 brew install gsed
-# Install JSON processor
-brew install jq
 ```
 
 ```vim
 " Setup
-" Install plugin (in this example using vim-plug)
+" Install plugin and dependencies (in this example using vim-plug)
 Plug 'timhwang21/vim-i18next'
+Plug 'mogelbrod/vim-jsonpath'
 " Set path to 'main' locale file
 let g:i18next_locale_path = '/path/to/file.json'
 " Alternatively, use autocmd for project-specific locale files

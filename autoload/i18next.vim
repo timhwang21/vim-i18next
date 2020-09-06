@@ -7,55 +7,64 @@ endif
 let g:autoloaded_i18next = 1
 
 if !exists('g:i18next_locale_path')
-  echom "vim-i18next: Plugin will not work without g:i18next_locale_path set to a translation file."
+  echo "vim-i18next: Plugin will not work without g:i18next_locale_path set to a translation file."
   finish
 endif
 
 let s:plugin_dir=expand('<sfile>:p:h:h')
 
 " Returns the line number for the given path.
-" Note the nonstandard error code of -1; this is because 0 is misleading as it
-" is a valid line number.
+" Note the nonstandard error code of -1; this is because the standard response
+" of 0 is misleading as it is a valid line number.
 " Arguments: ([search_for])
-function! i18next#get_line_nr(search_for) abort "{{{
-  let line_nr = trim(system(s:plugin_dir. "/bin/find-line-number ". g:i18next_locale_path. " ". a:search_for))
+function! i18next#get_position(search_for) abort "{{{
+  execute "e" g:i18next_locale_path
+  let pos = jsonpath#scan_buffer(a:search_for)
+  execute "e #"
 
-  " We don't use str2nr() because the error response is 0, which is a valid
-  " line number. Use regex instead.
-  if (line_nr =~# '^\d\+$')
-    return line_nr
+  if empty(pos)
+    echo "Path not found: " . search_for
+    return []
   else
-    return -1
+    let file_row = pos[1]
+    let file_col = pos[2]
+    return [file_row, file_col]
   endif
 endfunction "}}}
 
 " Print translation for provided key to messages.
 " Arguments: ([search_for])
 function! i18next#echo(search_for) abort "{{{
-  let line_nr = i18next#get_line_nr(a:search_for)
+  let pos = i18next#get_position(a:search_for)
 
-  if line_nr < 0
-    echom "vim-i18next: Path was not found in file."
+  if empty(pos)
+    echo "Path not found: " . search_for
     return
   endif
 
-  let line = readfile(g:i18next_locale_path, '', line_nr)[line_nr - 1]
-  echom line
+  let file_row = pos[0]
+  let line = readfile(g:i18next_locale_path, '', file_row)[file_row - 1]
+  echom trim(line)
 endfunction "}}}
 
 " Jump to translation for provided key. Attempts to place the cursor on
 " identifier for the given path.
 " Arguments: ([search_for])
 function! i18next#goto(search_for) abort "{{{
-  let line_nr = i18next#get_line_nr(a:search_for)
+  let pos = i18next#get_position(a:search_for)
 
-  if line_nr < 0
-    echom "vim-i18next: Path was not found in file."
+  if empty(pos)
+    echo "Path not found: " . search_for
     return
   endif
 
+  let file_row = pos[0]
+  let file_col = pos[0]
+  let path_len = strlen(a:search_for)
+
   execute "e" g:i18next_locale_path
-  execute line_nr
+  execute file_row
+  execute $(file_col + path_len) . "|"
 endfunction "}}}
 
 " Returns the first string between single/double quotes on the current line.

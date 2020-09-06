@@ -15,7 +15,7 @@ translation key.
 `vim-i18next` depends on the following:
 
 - GNU `sed` (installed as `gsed`)
-- `jq`
+- `mogelbrod/vim-jsonpath`
 
 ==============================================================================
 CONFIGURATION                                         *i18next-configuration*
