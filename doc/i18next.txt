@@ -12,13 +12,10 @@ INTRODUCTION                                                        *i18next*
 This plugin allows for navigating to the internationalized value of a
 translation key.
 
-Pressing `gTi'` when the cursor is over `t('path.to.translation')` will open
-the specified locale file and jump to the definition.
+`vim-i18next` depends on the following:
 
-This plugin optionally depends on the following plugins for enhanced
-functionality:
-
-- `jeanCarloMachado/vim-toop` 
+- GNU `sed` (installed as `gsed`)
+- `jq`
 
 ==============================================================================
 CONFIGURATION                                         *i18next-configuration*
@@ -34,32 +31,48 @@ Set using >
 For per-project files >
     autocmd BufRead,BufNewFile /path/to/project/*
     / let g:i18next_local_path = '/path_to_file.json'
->
-
-|g:i18next_shortcut|                                    *g:i18next_register*
-Type: |string|
-Default: gT
-
-Shortcut to invoke `i18next#goto()` with a text object.
-
-Override using >
-    let g:i18next_shortcut = 'gt'
 <
 
 ==============================================================================
 FUNCTIONS                                                 *i18next-functions*
 
-`i18next#goto()`                                              *i18next-goto*
+`i18next#echo(search_for)`                                    *i18next-echo*
+    Prints the value for the provided key in the file at
+    `g:i18next_locale_path` and navigates to the line if found.
+
+`i18next#echo_cursorline()`                        *i18next-echo-cursorline*
+    Prints the value for the key at the cursor in the file at
+    `g:i18next_locale_path` and navigates to the line if found.
+
+`i18next#get_line_nr(search_for)`                      *i18next-get_line_nr*
+    Prints the value for the provided key in the file at
+    `g:i18next_locale_path` and navigates to the line if found.
+
+`i18next#goto(search_for)`                                    *i18next-goto*
     Searches for the provided key in the file at `g:i18next_locale_path` and
     navigates to the line if found.
+
+`i18next#goto_cursorline()`                        *i18next-goto-cursorline*
+    Searches for the key at the cursor in the file at `g:i18next_locale_path`
+    and navigates to the line if found.
+
 
 ==============================================================================
 MAPPINGS                                                   *i18next-mappings*
 
-By default, `gT` is mapped to `i18next#goto`, and will pass a text object.
-This requires `jeanCarloMachado/vim-toop` to function correctly.
+No mappings are provided by default. 
 
-This can be remapped by setting `g:i18next_shortcut`.
+Example mappings >
+    nmap <leader>t :call i18next#echo_cursorline()<CR>
+    nmap gt :call i18next#goto_cursorline()<CR>
+<
+
+The plugin `vim-toop` allows adding text object support for functions.
+
+Example mappings >
+    call toop#mapFunction('i18next#echo', <leader>t)
+    call toop#mapFunction('i18next#goto', gt)
+<
 
 ==============================================================================
 ABOUT                                                         *i18next-about*
