@@ -59,12 +59,11 @@ function! i18next#goto(search_for) abort "{{{
   endif
 
   let file_row = pos[0]
-  let file_col = pos[0]
+  let file_col = pos[1]
   let path_len = strlen(a:search_for)
 
   execute "e" g:i18next_locale_path
-  execute file_row
-  execute $(file_col + path_len) . "|"
+  call cursor(file_row, file_col + path_len)
 endfunction "}}}
 
 " Returns the first string between single/double quotes on the current line.
